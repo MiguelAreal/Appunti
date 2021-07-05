@@ -197,7 +197,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/user', [UserController::class, 'index']);
 ````
-**Return view **
+**Return view:**
 ````php
 Route::view('/welcome', 'welcome');
 ````
@@ -229,7 +229,7 @@ Route::get('/user/{name?}', function ($name = 'John') {
     return $name;
 });
 ````
-**Parameter validation**
+**Parameter validation:**
 The "where" method accepts the name of the parameter and a regular expression defining how the parameter should be constrained.
 ````php
 Route::get('/user/{name}', function ($name) {
@@ -258,8 +258,7 @@ Route::get('/user/{id}', function ($id) {
     //
 })->whereUuid('id');
 ````
-**Route naming: **
-
+**Route naming:**
 For functions:
 ````php
 Route::get('/user/profile', function () {
