@@ -185,19 +185,19 @@ Route::permanentRedirect('/here', '/there');
 ````php
 Route::redirect('/here', '/there', 301);
 ````
-**Return function  **
+**Return function :**
 ````php
 Route::get('/page', function () {
 return view('helloworld');
 });
 ````
-**Return controller  **
+**Return controller :**
 ````php
 use App\Http\Controllers\UserController;
 
 Route::get('/user', [UserController::class, 'index']);
 ````
-**Return view**
+**Return view **
 ````php
 Route::view('/welcome', 'welcome');
 ````
