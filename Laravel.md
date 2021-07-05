@@ -1,9 +1,4 @@
 ## Install
-1. Install PHP
-2. Install Composer
-3. Install NodeJs
-4. Install Npm
-5. Install Laravel
 
 - Php -> `sudo apt install php`
 - Nodejs -> `sudo apt install nodejs`
@@ -25,6 +20,7 @@ sudo apt-get install curl php-cli php-mbstring git unzip
 
 #### Install Composer (globally)
 [Offical Docs](https://getcomposer.org/download/)
+
 Composer is a dependency management tool in PHP. For any PHP project, you need to use a library of code.
 ```` bash
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
