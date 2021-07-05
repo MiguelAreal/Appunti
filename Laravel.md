@@ -9,40 +9,62 @@ Php -> `sudo apt install php`
 Nodejs -> `sudo apt install nodejs`
 Npm -> `sudo apt install npm`
 
-#### Install Composer (globally)
-Composer is a dependency management tool in PHP. For any PHP project, you need to use a library of code. Composer easily manages this task on your behalf, helping you to declare those libraries and packages.
+#### Set Php version
+```` bash
+sudo apt install php8.0 #Install new version
+sudo a2dismod php7.3 #Disable old version
+sudo a2enmod php8.0 #Enable new version
+sudo systemctl restart apache2
+````
+#### Install base libraries
 ```` bash
 sudo apt-get update
+sudo apt-get upgrade
 sudo apt-get install curl php-cli php-mbstring git unzip
+````
 
+#### Install Composer (globally)
+[Offical Docs](https://getcomposer.org/download/)
+Composer is a dependency management tool in PHP. For any PHP project, you need to use a library of code.
+```` bash
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-
-sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+php composer-setup.php
 php -r "unlink('composer-setup.php');"
-
-echo 'export PATH="$PATH:/usr/local/bin/composer"' >> ~/.bashrc` //Add composer to path
+sudo mv composer.phar /usr/local/bin/composer #Make composer available globally
 ````
-#### Install Laravel (globally)
+**Commands**
+```` bash
+composer update #Update composer
+composer clear-cache #Clear cache
+````
+
+#### Create app
 ```` bash
 composer create-project laravel/laravel example-app
-cd example-app
-
+````
+**Specify version**
+```` bash
+composer create-project laravel/laravel=8 --prefer-dist example-app
 ````
 #### Start server
-`php artisan serve --host=192.168.1.250 --port=8002`
-`php artisan serve --host=127.0.0.1 --port=8002`
-
+```` bash
+php artisan serve
+````
+**Specify socket**
+```` bash
+php artisan serve --host=127.0.0.1 --port=8002
+````
 ## Folder Structure
-**App**: main folder. Contiene models e controllers
-**Bootstrap**: base di avvio
-**Config**: contiene file di configurazione
-**Databse**: contiene migration (creazione tabelle) + dati per testing
-**Public**: css + js + index + htaccess
-**Resources**: views + file compilati con webpack + language
+**App**: Models, Controllers and Middleware
+**Config**: Configuration files
+**Database**: Migrations, Seeds
+**Public**: Css, Js
+**Resources**: Views
+**Vendor**: Installation files
 
 ## Database
-Il filve .env contiene tutti i dati di configurazione privati ed è listato come gitignore per cui non viene reso pubblico sincronizzandolo con Git. È importante inserire in quel file tutti i dati di configurazione e in nessun altro file.
+The .env file contains all the private configuration data and is listed as gitignore so it is not made public by synchronizing it with Git. It's important to put all configuration data in that file and no other files.
 
 ## LAMP
 LAMP (Linux, Apache, MySQL, PHP/Perl/Python) is an acronym denoting one of the most common solution stacks for many of the web's most popular applications. However, LAMP now refers to a generic software stack model and its components are largely interchangeable.
