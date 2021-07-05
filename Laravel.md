@@ -211,7 +211,7 @@ Route::get('/user/{id}', function ($id) {
 ````php
 Route::get('/user/{id}',[UserController::class, 'show']);
 ````
-**Pass optional parameter to controller:** \\
+**Pass optional parameter to controller:** //
 Note: use the same syntax to pass it to a function
 ````php
 Route::get('/user/{id?}',[UserController::class, 'show']);
