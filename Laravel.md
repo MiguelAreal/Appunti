@@ -3,6 +3,7 @@
 - Php: `sudo apt install php`
 - Nodejs: `sudo apt install nodejs`
 - Npm: `sudo apt install npm`
+- MySql: `sudo apt install mysql-server`
 
 #### Set Php version
 ```` bash
@@ -51,6 +52,25 @@ php artisan serve
 ```` bash
 php artisan serve --host=127.0.0.1 --port=8002
 ````
+
+#### Create database (in mysql)
+```` sql
+CREATE DATABASE <dbname>;
+GRANT ALL PRIVILEGES ON <dbname>.* TO 'username'@'localhost' IDENTIFIED BY 'password';
+````
+**Then add the database configuration to the .env file**
+The .env file contains all the private configuration data and is listed as gitignore so it is not made public by synchronizing it with Git. It's important to put all configuration data in that file and no other files.
+
+#### Auth (Breeze)
+Once you have created a new Laravel application, you may install Laravel Breeze using Composer.
+```` bash
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install
+npm run dev
+php artisan migrate
+````
+
 ## Folder Structure
 **App**: Models, Controllers and Middleware
 **Config**: Configuration files
@@ -59,8 +79,22 @@ php artisan serve --host=127.0.0.1 --port=8002
 **Resources**: Views
 **Vendor**: Installation files
 
-## Database
-The .env file contains all the private configuration data and is listed as gitignore so it is not made public by synchronizing it with Git. It's important to put all configuration data in that file and no other files.
+## Naming Conventions
+
+**Controllers**: singular case, no spacing between words, and end with "Controller".
+Ex: BlogController, AuthController, UserController.
+
+**Tables**: lower case, snake_case, plural form.
+Ex: posts, project_tasks, uploaded_images.
+
+**Columns**: lower case, snake_case.
+Ex: post_body, id, created_at.
+
+**Models**: singular, no spacing between words, capitalised.
+Ex: User, ForumThread, Comment.
+
+**Blade**: lower case, snake_case
+Ex: all.blade.php, all_posts.blade.php
 
 ## LAMP
 LAMP (Linux, Apache, MySQL, PHP/Perl/Python) is an acronym denoting one of the most common solution stacks for many of the web's most popular applications. However, LAMP now refers to a generic software stack model and its components are largely interchangeable.
