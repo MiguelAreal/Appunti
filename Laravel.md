@@ -16,7 +16,7 @@ sudo systemctl restart apache2
 ```` bash
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install curl php-cli php-mbstring git unzip
+sudo apt-get install curl php-cli php-mbstring php-xml git unzip
 ````
 
 #### Install Composer (globally)
@@ -144,11 +144,18 @@ php artisan migrate:refresh
 ````
 **Specify only one migration**
 ````bash
+php artisan migrate --path=/database/migrations/migration_name.php
+````
+````bash
 php artisan migrate:refresh --path=/database/migrations/migration_name.php
 ````
 
-
-
+## Clear cache
+````bash
+php artisan cache:clear
+php artisan view:clear
+php artisan config:clear
+````
 ## Routes
 The web.php file in the routes directory is important. It takes the requests from you, the user, and sends them to either a closure that gives a response, a view page that displays the response, or a controller that does the same thing; in some critical cases, the controller consults with the model and then is updated by the business logic.
 For the web interface, the routes/web.php file defines the routes.
