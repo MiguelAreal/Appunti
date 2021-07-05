@@ -273,8 +273,34 @@ Route::get('/user/profile',[UserProfileController::class, 'show'])->name('profil
 ````html
 <a href="{{route('home')}}">Link</a>
 ````
-
-
+## Model
+**Base model:** 
+````php
+class ModelName extends Model
+{
+    use HasFactory;
+}
+````
+**Change table namel:** 
+````php
+protected $table = 'newname';
+````
+**Change primary key:** 
+````php
+protected $primaryKey = 'newname';
+````
+**Disable primary key integer incrementing:** 
+````php
+public $incrementing = false;
+````
+**Change primary key type:** 
+````php
+protected $keyType = 'string';
+````
+**Disable timestamps:** 
+````php
+public $timestamps = false;
+````
 ## Views
 I file di views terminano in .blade.php (non serve specificarlo quando si richiama la view).
 Sarebbe possibile includere anche solo file .php o .html ma l'uso delle funzionalità messe a disposizione da blade è fortemente consigliato.
@@ -342,30 +368,7 @@ Nella view si inserisce un segnaposto secondo la sintassi:
 ````
 In alternativa è possibile passare dati a views tramite la funzione With.
 
-## Model e Migration
-Prima di creare una Migration bisogna creare un Model che si interfacci con il database.
-Si possono creare contemporaneamente Model e Migration con
-````bash
-php artisan make:model Utente -m
-````
- Nota: quando crea un Model, Laravel aggiunge una s a fine nome per indicare in automatico il nome della tabella che dovrebbe essere al plurale.
- Per specificare il nome della tabella basterà specificarlo come nell'esempio:
- ````php
-class Utente extends Model
-{
-    use HasFactory;
-    protected $table = 'utenti';
-}
-````
- 
- Per effettuare migrazione e creare table:
- ````bash
-php artisan migrate
-````
-Per resettare tutte le table (chiama metodo down):
- ````bash
-php artisan migrate:reset
-````
+
 
 ### Eloquent
 Specifica chiave primaria:
