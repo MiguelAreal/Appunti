@@ -164,7 +164,7 @@ php artisan optimize:clear
 ## Routes
 The web.php file in the routes directory is important. It takes the requests from you, the user, and sends them to either a closure that gives a response, a view page that displays the response, or a controller that does the same thing; in some critical cases, the controller consults with the model and then is updated by the business logic.
 
-Listing all the routes: `php artisan route:list`
+- Listing all the routes: `php artisan route:list`
 
 **Route types:**
 ````php
@@ -230,7 +230,7 @@ Route::get('/user/{name?}', function ($name = 'John') {
 });
 ````
 **Parameter validation:**
-The "where" method accepts the name of the parameter and a regular expression defining how the parameter should be constrained.
+- The "where" method accepts the name of the parameter and a regular expression defining how the parameter should be constrained.
 ````php
 Route::get('/user/{name}', function ($name) {
     //
@@ -259,17 +259,17 @@ Route::get('/user/{id}', function ($id) {
 })->whereUuid('id');
 ````
 **Route naming:**
-For functions:
+- For functions:
 ````php
 Route::get('/user/profile', function () {
     //
 })->name('profile');
 ````
-For controllers:
+- For controllers:
 ````php
 Route::get('/user/profile',[UserProfileController::class, 'show'])->name('profile');
 ````
-Get route by name (blade):
+- Get route by name (blade):
 ````html
 <a href="{{route('home')}}">Link</a>
 ````
