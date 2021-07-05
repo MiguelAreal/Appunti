@@ -1,8 +1,8 @@
 ## Install
 
-- Php -> `sudo apt install php`
-- Nodejs -> `sudo apt install nodejs`
-- Npm -> `sudo apt install npm`
+- Php: `sudo apt install php`
+- Nodejs: `sudo apt install nodejs`
+- Npm: `sudo apt install npm`
 
 #### Set Php version
 ```` bash
