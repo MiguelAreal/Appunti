@@ -210,7 +210,7 @@ Es:
 I file compilati si trovano in storage->framework->views.
 
 #### Templating
-Inserire contenuti in un certo punto: `@yeld('content')`
+Inserire contenuti in un certo punto: `@yield('content')`
 Esempio layout:
 ````html
 <!doctype html>
@@ -219,13 +219,13 @@ Esempio layout:
 <link rel="stylesheet" href="/css.css">
 
 <body>
-	@yeld('content')
+	@yield('content')
 </body>
 
 ````
 
 Estendere una vista per inserirci dentro dei contenuti: `@extends('layout')`.
-Una volta esteso un file, tramite `@section` si crea una sezione che andà a prendere il posto di `@yels` nel file esteso.
+Una volta esteso un file, tramite `@section` si crea una sezione che andà a prendere il posto di `@yield` nel file esteso.
 
 Esempio vista:
 ````html
