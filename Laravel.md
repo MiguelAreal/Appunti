@@ -211,13 +211,13 @@ Route::get('/user/{id}', function ($id) {
 ````php
 Route::get('/user/{id}',[UserController::class, 'show']);
 ````
-**Pass optional parameter to controller:** //
-Note: use the same syntax to pass it to a function
+**Pass optional parameter to controller:**
+- Note: use the same syntax to pass it to a function
 ````php
 Route::get('/user/{id?}',[UserController::class, 'show']);
 ````
 **Pass many parameters to controller:**
-Note: in the example there are both optional and required parameters. Use the same syntax to pass it to a controller
+- Note: in the example there are both optional and required parameters. Use the same syntax to pass it to a controller
 ````php
 Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
     //
