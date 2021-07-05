@@ -71,28 +71,28 @@ php artisan migrate
 ````
 
 ## Folder Structure
-**App**: Models, Controllers and Middleware
-**Config**: Configuration files
-**Database**: Migrations, Seeds
-**Public**: Css, Js
-**Resources**: Views
-**Vendor**: Installation files
+- **App**: Models, Controllers and Middleware
+- **Config**: Configuration files
+- **Database**: Migrations, Seeds
+- **Public**: Css, Js
+- **Resources**: Views
+- **Vendor**: Installation files
 
 ## Naming Conventions
 
-**Controllers**: singular case, no spacing between words, and end with "Controller".
+- **Controllers**: singular case, no spacing between words, and end with "Controller".
 Ex: BlogController, AuthController, UserController.
 
-**Tables**: lower case, snake_case, plural form.
+- **Tables**: lower case, snake_case, plural form.
 Ex: posts, project_tasks, uploaded_images.
 
-**Columns**: lower case, snake_case.
+- **Columns**: lower case, snake_case.
 Ex: post_body, id, created_at.
 
-**Models**: singular, no spacing between words, capitalised.
+- **Models**: singular, no spacing between words, capitalised.
 Ex: User, ForumThread, Comment.
 
-**Blade**: lower case, snake_case
+- **Blade**: lower case, snake_case
 Ex: all.blade.php, all_posts.blade.php
 
 ## LAMP
