@@ -39,3 +39,12 @@ Per contribuire ad un progetto esistente:
 2) Lavorare sulla propria fork della repository.
 3) Quando si è pronti per contirbuire al progetto con le modifiche si deve aprire una pull request sulla pagina del progetto.
 4) Se le modifiche sono approvate da chi gestisce il progetto, il pull viene approvato.
+
+
+
+git checkout -b <newbranch> <oldbranch>
+  
+Per fare merge
+  1) ci si sposta nel branch di destinazione (dev o master) usando git checkout dev
+  2) git merge <breacnhfeature>
+  
