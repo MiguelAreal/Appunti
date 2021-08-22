@@ -1,23 +1,27 @@
+- Material Icon Theme - Philipp Kief
+- Dracula Official - Dracula Theme
+- C/C++ - Microsoft
+- Python - Microsoft
+- PHP Intelephense - Ben Mewburn
+- Git Graph - mhutchie
+- Draw.io Integration - Henning Dieterichs
+- Visual Studio IntelliCode - Microsoft
+- Markdown All in One - Yu Zhang
+- Highlight Matching Tag - vincaslt
+- Auto Close Tag - Jun Han
+- Auto Rename Tag - Jun Han
+- Path Intellisense - Christian Kohler
+- Bracket Pair Colorizer 2 - CoenraadS
 - Laravel Blade Snippets - Winnie Lin
 - Laravel Snippets - Winnie Lin
 - Laravel goto Controller - stef-k
 - Laravel goto view - codingyu
-- DotENV - mikestead
 - Laravel Extra Intellisense - amir
-- Python - Microsoft
-- C/C++ - Microsoft
-- Material Icon Theme - Philipp Kief
-- Bracket Pair Colorizer 2 - CoenraadS
-- Path Intellisense - Christian Kohler
-- Dracula Official - Dracula Theme
-- Git Graph - mhutchie
 - Laravel Artisan - Ryan Naddy
-- Auto Rename Tag - Jun Han
-- Highlight Matching Tag - vincaslt
-- Draw.io Integration - Henning Dieterichs
-- Visual Studio IntelliCode - Microsoft
 - Laravel Blade Formatter - Shuhei Hayashibara
-- PHP Intelephense - Ben Mewburn
+- DotENV - mikestead
+
+
 
 
 
