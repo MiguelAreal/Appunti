@@ -16,6 +16,8 @@
 - Highlight Matching Tag - vincaslt
 - Draw.io Integration - Henning Dieterichs
 - Visual Studio IntelliCode - Microsoft
+- Laravel Blade Formatter - Shuhei Hayashibara
+- PHP Intelephense - Ben Mewburn
 
 
 
