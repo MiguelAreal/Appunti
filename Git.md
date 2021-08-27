@@ -48,3 +48,20 @@ Per fare merge
   1) ci si sposta nel branch di destinazione (dev o master) usando git checkout dev
   2) git merge <breacnhfeature>
   
+Per andare al commit precedente: git checkout HEAD^
+
+Per andare a un certo commit: git checkout commitid
+
+Per andare a un certo branch: git checkout branchname
+
+Differenza tra branch -d e -D
+
+git merge commitid -> unisce il branch del commit id al branch in cui sei posizionato
+Da commitid a posizione attuale
+
+
+
+git merge branch_1-> unisce il branch_1 al branch in cui sei posizionato
+Da branch_1 a branch attuale
+
+in caso di conflitti, si risolvono e poi si fa un nuovo add e un nuovo commit
