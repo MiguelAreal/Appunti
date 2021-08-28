@@ -36,7 +36,8 @@ Mostra tutti i commit alla repository e i relativi dettagli.
 
 **Branch**:  
 'git branch`: Controllare branch esistenti e quello su cui si sta lavorando.  
-'git checkout -b <newname>`: Creare nuovo branch.  
+'git checkout -b <newbranch>`: Creare nuovo branch.  
+`git checkout -b <newbranch> <oldbranch>`: Creare nuovo branch a partire da uno già esistente.  
 
 
 **Merge**: Unire due branch.  
@@ -56,7 +57,10 @@ Mostra tutti i commit alla repository e i relativi dettagli.
 `git reset --hard origin/master`: Modifica lo stato attuale della repository locale con quello della repository presente sul server.  
 
 
+**Diff**: 
+`git diff <branch1> <branch2>`: Mostra differenze tra due branch  
 
-
+**Fetch**: 
+`git fetch`: Controlla se sul server ci sono nuovi aggiornamenti. Se ce ne sono, NON li scarica, bisogna usare git pull  
 
 
