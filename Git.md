@@ -36,7 +36,7 @@ Mostra tutti i commit alla repository e i relativi dettagli.
 
 **Branch**:  
 'git branch`: Controllare branch esistenti e quello su cui si sta lavorando.  
-git checkout -b <newname>`: Creare nuovo branch.  
+'git checkout -b <newname>`: Creare nuovo branch.  
 
 
 **Merge**: Unire due branch.  
