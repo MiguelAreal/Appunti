@@ -2,66 +2,50 @@
 
 **Clone**: download a repository: `git clone <url>`.
 
+**Pull**: `git pull`.
+Le ultime modifiche alla repository sul server vengono scaricare nella repository locale. Utile quando la versione della repository sul server è più recente di quella locale.
+
 **Add**: `git add <filename>`.
-Aggiunge filename alla lista di quelli di cui salvare lo stato ad ogni commit.
+Impostare un file come "staged" ovvero che sarà salvato al prossimo commit.
+Impostare tutti i file come "staged": `git add -A`
 
 **Commit**: `git commit -m "<message>"`.
 Commit: salvare lo stato corrente di tutti i file e delle cartelle all'interno della repository.
-Fino ad ora i vari commit solo salvati solo localmente.
-
-**Stato**: `git status` .
-Permette di verificare quante modifiche ai file locali non sono ancora state oggetto di un commit o quanti commit locali non sono salvati nella repository online.
 
 **Push**: `git push`.
 I commit locali vengono caricati nella repository sul server. Utile quando la versione della repository locale è più recente di quella sul server.
 
-**Pull**: `git pull`.
-Le ultime modifiche alla repository sul server vengono scaricare nella repository locale. Utile quando la versione della repository sul server è più recente di quella locale.
-
-**Merge conflict**: quando due utenti fanno il push di una modifica alle stesse linee di codice. Git ritorna un errore e modifica il file che causa il conflitto aggiungendo dei metadati che indicano la causa del conflitto. Il programmatore decide cosa modificareper risolvere il conflitto ed effettua un nuovo commit. 
+**Stato**: `git status` .
+Permette di verificare quante modifiche ai file locali non sono ancora state oggetto di un commit o quanti commit locali non sono salvati nella repository online.
 
 **Log**: `git log`.
 Mostra tutti i commit alla repository e i relativi dettagli.
 
-**Reset**: `git reset --hard <commithash>`.
-Modifica lo stato attuale della repository con uno statato relativo ad un commit precedente.
-`git reset --hard origin/master`.
-Modifica lo stato attuale della repository locale con quello della repository presente sul server.
+**Checkout**: Spostarsi su un altro branch o su un determinato commit
+`git checkout <commitid>`
+`git checkout <branchname>`
+`git checkout HEAD^`: Spostarsi sul commit precedente.
+`git checkout -b <newbranch> <oldbranch>`: Creare un nuovo branch e spostarsi sul branch appena creato.
 
-**Branching**
-Controllare branch esistenti e quello su cui sto lavorando: `git branch` .
-Creare nuovo branch: `git checkout -b <newname>`.
-Lavorare su un altro branch `git checkout <name>`.
-Unire un altro branch a quello corrente `git merge <nome>`.
+**Branch**:
+'git branch`: Controllare branch esistenti e quello su cui si sta lavorando.
+git checkout -b <newname>`: Creare nuovo branch.
 
-Per contribuire ad un progetto esistente:
-1) Fork repository.
-2) Lavorare sulla propria fork della repository.
-3) Quando si è pronti per contirbuire al progetto con le modifiche si deve aprire una pull request sulla pagina del progetto.
-4) Se le modifiche sono approvate da chi gestisce il progetto, il pull viene approvato.
+**Merge**: Unire due branch
+`git merge <branchname>`: Unire un altro branch a quello corrente.
+`git merge <commitid>`: Unisce il branch del commit id al branch corrente.
 
+**Delete branch**: Eliminare un determinato branch
+`git branch -d <branchname>`
 
+**Merge conflict**: quando due utenti fanno il push di una modifica alle stesse linee di codice. Git ritorna un errore e modifica il file che causa il conflitto aggiungendo dei metadati che indicano la causa del conflitto. Il programmatore decide cosa modificare per risolvere il conflitto ed effettua un nuovo commit e un nuovo push.
 
-git checkout -b <newbranch> <oldbranch>
-  
-Per fare merge
-  1) ci si sposta nel branch di destinazione (dev o master) usando git checkout dev
-  2) git merge <breacnhfeature>
-  
-Per andare al commit precedente: git checkout HEAD^
-
-Per andare a un certo commit: git checkout commitid
-
-Per andare a un certo branch: git checkout branchname
-
-Differenza tra branch -d e -D
-
-git merge commitid -> unisce il branch del commit id al branch in cui sei posizionato
-Da commitid a posizione attuale
+**Reset**: 
+`git reset --hard <commithash>`: Modifica lo stato attuale della repository con uno statato relativo ad un commit precedente.
+`git reset --hard origin/master`: Modifica lo stato attuale della repository locale con quello della repository presente sul server.
 
 
 
-git merge branch_1-> unisce il branch_1 al branch in cui sei posizionato
-Da branch_1 a branch attuale
 
-in caso di conflitti, si risolvono e poi si fa un nuovo add e un nuovo commit
+
+
