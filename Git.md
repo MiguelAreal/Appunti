@@ -3,7 +3,7 @@
 **Configurazione**:  
 `git config --global user.name “Nome Cognome"`  
 `git config --global user.email “email@domain.comt”`  
-
+`git config --global credential.helper 'cache --timeout 3600'`: Salva le credenziali per 1 ora.
 
 **Creazione**:  
 `git init`: Crea nuova repository.  
