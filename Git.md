@@ -1,48 +1,59 @@
 # Git
 
-**Clone**: download a repository: `git clone <url>`.
+**Clone**: download a repository: `git clone <url>`.  
 
-**Pull**: `git pull`.
-Le ultime modifiche alla repository sul server vengono scaricare nella repository locale. Utile quando la versione della repository sul server è più recente di quella locale.
+**Pull**: `git pull`.  
+Le ultime modifiche alla repository sul server vengono scaricare nella repository locale. Utile quando la versione della repository sul server è più recente di quella locale.  
 
-**Add**: `git add <filename>`.
-Impostare un file come "staged" ovvero che sarà salvato al prossimo commit.
-Impostare tutti i file come "staged": `git add -A`
 
-**Commit**: `git commit -m "<message>"`.
-Commit: salvare lo stato corrente di tutti i file e delle cartelle all'interno della repository.
+**Add**: `git add <filename>`.  
+Impostare un file come "staged" ovvero che sarà salvato al prossimo commit.  
+Impostare tutti i file come "staged": `git add -A`  
 
-**Push**: `git push`.
-I commit locali vengono caricati nella repository sul server. Utile quando la versione della repository locale è più recente di quella sul server.
 
-**Stato**: `git status` .
-Permette di verificare quante modifiche ai file locali non sono ancora state oggetto di un commit o quanti commit locali non sono salvati nella repository online.
+**Commit**: `git commit -m "<message>"`.  
+Commit: salvare lo stato corrente di tutti i file e delle cartelle all'interno della repository.  
 
-**Log**: `git log`.
-Mostra tutti i commit alla repository e i relativi dettagli.
 
-**Checkout**: Spostarsi su un altro branch o su un determinato commit
-`git checkout <commitid>`
-`git checkout <branchname>`
-`git checkout HEAD^`: Spostarsi sul commit precedente.
-`git checkout -b <newbranch> <oldbranch>`: Creare un nuovo branch e spostarsi sul branch appena creato.
+**Push**: `git push`.  
+I commit locali vengono caricati nella repository sul server. Utile quando la versione della repository locale è più recente di quella sul server.  
 
-**Branch**:
-'git branch`: Controllare branch esistenti e quello su cui si sta lavorando.
-git checkout -b <newname>`: Creare nuovo branch.
 
-**Merge**: Unire due branch
-`git merge <branchname>`: Unire un altro branch a quello corrente.
-`git merge <commitid>`: Unisce il branch del commit id al branch corrente.
+**Stato**: `git status` .  
+Permette di verificare quante modifiche ai file locali non sono ancora state oggetto di un commit o quanti commit locali non sono salvati nella repository online.  
 
-**Delete branch**: Eliminare un determinato branch
-`git branch -d <branchname>`
 
-**Merge conflict**: quando due utenti fanno il push di una modifica alle stesse linee di codice. Git ritorna un errore e modifica il file che causa il conflitto aggiungendo dei metadati che indicano la causa del conflitto. Il programmatore decide cosa modificare per risolvere il conflitto ed effettua un nuovo commit e un nuovo push.
+**Log**: `git log`.  
+Mostra tutti i commit alla repository e i relativi dettagli.  
+
+
+**Checkout**: Spostarsi su un altro branch o su un determinato commit.  
+`git checkout <commitid>`  
+`git checkout <branchname>`  
+`git checkout HEAD^`: Spostarsi sul commit precedente.  
+`git checkout -b <newbranch> <oldbranch>`: Creare un nuovo branch e spostarsi sul branch appena creato.  
+
+
+**Branch**:  
+'git branch`: Controllare branch esistenti e quello su cui si sta lavorando.  
+git checkout -b <newname>`: Creare nuovo branch.  
+
+
+**Merge**: Unire due branch.  
+`git merge <branchname>`: Unire un altro branch a quello corrente.  
+`git merge <commitid>`: Unisce il branch del commit id al branch corrente.  
+
+
+**Delete branch**: Eliminare un determinato branch.  
+`git branch -d <branchname>`  
+
+
+**Merge conflict**: quando due utenti fanno il push di una modifica alle stesse linee di codice. Git ritorna un errore e modifica il file che causa il conflitto aggiungendo dei metadati che indicano la causa del conflitto. Il programmatore decide cosa modificare per risolvere il conflitto ed effettua un nuovo commit e un nuovo push.  
+
 
 **Reset**: 
-`git reset --hard <commithash>`: Modifica lo stato attuale della repository con uno statato relativo ad un commit precedente.
-`git reset --hard origin/master`: Modifica lo stato attuale della repository locale con quello della repository presente sul server.
+`git reset --hard <commithash>`: Modifica lo stato attuale della repository con uno statato relativo ad un commit precedente.  
+`git reset --hard origin/master`: Modifica lo stato attuale della repository locale con quello della repository presente sul server.  
 
 
 
