@@ -35,7 +35,7 @@ I commit locali vengono caricati nella repository sul server. Utile quando la ve
 
 **Stato**: `git status` .  
 Permette di verificare quante modifiche ai file locali non sono ancora state oggetto di un commit o quanti commit locali non sono salvati nella repository online.  
-
+`git status -s`: Versione riassunta di status.    
 
 **Log**: `git log`.  
 Mostra tutti i commit alla repository e i relativi dettagli.  
