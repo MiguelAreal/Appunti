@@ -51,8 +51,8 @@ Mostra tutti i commit alla repository e i relativi dettagli.
 
 
 **Branch**:  
-'git branch`: Controllare branch esistenti e quello su cui si sta lavorando.  
-'git checkout -b <newbranch>`: Creare nuovo branch.  
+`git branch`: Controllare branch esistenti e quello su cui si sta lavorando.  
+`git checkout -b <newbranch>`: Creare nuovo branch.  
 `git checkout -b <newbranch> <oldbranch>`: Creare nuovo branch a partire da uno già esistente.  
 
 
