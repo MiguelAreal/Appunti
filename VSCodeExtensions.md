@@ -2,7 +2,6 @@
 - Dracula Official - Dracula Theme
 - C/C++ - Microsoft
 - Python - Microsoft
-- PHP Intelephense - Ben Mewburn
 - Git Graph - mhutchie
 - GitLens — Git supercharged - Eric Amodio
 - Draw.io Integration - Henning Dieterichs
