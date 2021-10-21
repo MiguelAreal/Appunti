@@ -20,7 +20,7 @@
 - Laravel Artisan - Ryan Naddy
 - Laravel Blade Formatter - Shuhei Hayashibara
 - DotENV - mikestead
-
+- vscode-pdf - tomoki1207
 
 
 
