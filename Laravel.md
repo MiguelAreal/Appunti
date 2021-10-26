@@ -54,9 +54,17 @@ php artisan serve --host=127.0.0.1 --port=8002
 
 #### Create database (in mysql)
 ```` sql
-CREATE DATABASE <dbname>;
+CREATE SCHEMA <dbname>;
 GRANT ALL PRIVILEGES ON <dbname>.* TO 'username'@'localhost' IDENTIFIED BY 'password';
 ````
+
+#### Create mysql user ad assign DB (in mysql)
+```` sql
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';;
+GRANT ALL PRIVILEGES ON * . * TO 'user'@'localhost';
+FLUSH PRIVILEGES
+````
+
 **Then add the database configuration to the .env file**
 The .env file contains all the private configuration data and is listed as gitignore so it is not made public by synchronizing it with Git. It's important to put all configuration data in that file and no other files.
 
