@@ -461,27 +461,27 @@ https://laravel.com/docs/8.x/csrf
 1. Fare una pulizia con php artisan optimize:clear
 
 2. Export DB
-'''
+````
 mysqldump -u root -p NomeDB > $HOME/dbexport.sql
-'''
+````
 
-Aggiungere al file.sql generato la prima riga con '''USE NomeDB;'''
-Copiare contenuto file e incollarlo nel box per i comandi sql dello shared hosting.
+- Aggiungere al file.sql generato la prima riga con `USE NomeDB`
+- Copiare contenuto file e incollarlo nel box per i comandi sql dello shared hosting.
 
 3. Upload file
-Collegarsi in FTP all'hositng.
-Dentro la cartella public_html creare una cartella chiamata application_engine.
-Si copia tutto il contenuto del progetto Laravel dentro ad application_engine tranne la cartella public.
-Il contenuto della cartella public va invece in public_html dell'hosting.
-Il file index.php contnuto nella cartella public va modificato da: 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+- Collegarsi in FTP all'hositng.
+- Dentro la cartella public_html creare una cartella chiamata application_engine.
+- Si copia tutto il contenuto del progetto Laravel dentro ad application_engine tranne la cartella public.
+- Il contenuto della cartella public va invece in public_html dell'hosting.
+- Il file index.php contnuto nella cartella public va modificato da: 
+`$app = require_once __DIR__.'/../bootstrap/app.php';`
 a:
-$app = require_once __DIR__.'/../application_engine/bootstrap/app.php';
+`$app = require_once __DIR__.'/../application_engine/bootstrap/app.php';`
 
 3. Env
-Modificare file .env con i nuovi parametri di connessione al database e cambiare in
-APP_ENV=production 
-APP_DEBUG=false
+- Modificare file .env con i nuovi parametri di connessione al database e cambiare in
+`APP_ENV=production `
+`APP_DEBUG=false`
 
 
 
