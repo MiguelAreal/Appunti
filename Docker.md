@@ -96,12 +96,15 @@ Un volume è una cartella presente nel file system dell'host che viene montata s
   - Named: sono persistenti e non accessibili da host. Ok per file che devono essere persisteni ma che non vanno modificati direttamente da host. Il volume non è associato ad un container.
 - Bind Mounts (gestiti da User)
 
-#### Creazione
+#### Creation
 Anonymous volume:
+
 Nel Dockerfile: `VOLUME ["/path/on/container"] #Anonymous volume`
 
 Named volume: 
+
 `docker run ... -v volume_name:/path/on/container`
 
+### Commands
 Lista volumi: `docker volume ls`
 
