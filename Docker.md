@@ -97,11 +97,11 @@ Un volume è una cartella presente nel file system dell'host che viene montata s
 - Bind Mounts (gestiti da User)
 
 #### Creation
-Anonymous volume:
+**Anonymous volume:**
 
 Nel Dockerfile: `VOLUME ["/path/on/container"] #Anonymous volume`
 
-Named volume: 
+**Named volume:**
 
 `docker run ... -v volume_name:/path/on/container`
 
