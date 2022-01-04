@@ -79,3 +79,12 @@ CMD ["node". " server.js"]
 - Tag: si usa per specializzare una versione di una image. Usato ad esempio per specificare versione, configurazione.
 - Nei comandi `image_id` può essere sostituito con `name:tag`.
 - Il comando `docker run image_name` cerca l'immagine in locale e se non la trova, la cerca su Docker Hub. Se la versione su Docker Hub viene aggiornata successivamente al comando run, non verrà aggiornata la versione locale. È necessario lanciare `docker pull image_name` per aggiornarla e successivamente fare il run.
+
+## Data
+Il codice e l'ambiente necessario all'applicazione vengono caricati nel container al momento del build come specificato nel Dockerfile. Questi files sono read-only, vengono caricati durante la build e non possono essere cambiati successivamente. Sono dati memorizzati nell'image.
+
+I file temporanei necessari all'applicazione sono memorizzati separatamente, possono essere creati e riscritti durante l'esecuzione e vengono eliminati quando il container viene fermato. Sono dati memorizzati nel container.
+
+I file permanenti che vengono creati e modificati dall'applicazione sono memorizzati nel cotainer e copiati in un volume per resistere al riavvio o all'eliminazione di un container. 
+
+
