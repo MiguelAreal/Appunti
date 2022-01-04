@@ -60,12 +60,13 @@ Dopo ogni modifica al codice bisogna fare il build image, le images sono read-on
 ### Commands
 - Lista container: `docker ps`
   - Flags:
-    - `-a` mostra cronologia
+    - `-a` mostra anche i container in stop
 - Creazione: `docker run ImageID`
   - Flags:
     - `-p local_port:container_port` Binding tra porta host e porta container
     - `-d` Avvio in detached mode
     - `-it` Espone shell del container (interactive mode)
+    - `--rm` Elimina in automatico il container quando va in stop
 - Passare in attache mode: `docker attach container_name`
 - Visualizzare logs: `docker logs container_name`
   - Flags:
@@ -85,7 +86,7 @@ Dopo ogni modifica al codice bisogna fare il build image, le images sono read-on
 ## Images
 ### Commands
 - Lista images: `docker images`
-- Eliminare image: `docker rmi image_id`
+- Eliminare image: `docker rmi image_id image_id2 ...`
 - Eliminare images non usate: `docker image prune`
 
 ## Note
