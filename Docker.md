@@ -1,41 +1,19 @@
-Creazione Image
-Creare un file chiamato Dockerfile
-….
-
-Build Image
-Mi posiziono nella cartella contenente il Dockerfile
-docker build .
-Restituisce image_id
-
-Lancio Image
-docker run image_id
-Se nel Dockerfile apro una porta: docker run -p 55000:55000 image_id
-Stop Image
-
-
-
-
-Images: template per un container. Contiene codice, librerie, tools, runtimes. Da una singola immagine si possono creare molti container.
-Container: applicativo in esecuzione. Istanza di un Image.
-
-Docker Hub: repository di Images
-
-Creare container da images esistenti:
-Creare container: docker run image_id. Se non trova Image in locale, la cerca su Docker Hub.
-
-
-Creare custom image:
-Creare file Dockerfile con istruzioni da eseguire durante Build
-FROM baseimage #(su Docker Hub o in locale)
-WORKDIR /app
-COPY local_folder container_folder
-[COPY . .] aggiunge files della cartella in cui si trova l'immagine alla workdir (root/app) del filesystem del container.
-RUN command (eseguito quando viene fatto build dell'image)
-EXPOSE port
-CMD ["command"](eseguito quando viene avviato il container)
-
-Nota: ogni comando nel Dockerfile crea un layer. Se un layer viene modificato rispetto ad una precedente build, la nuova build esegue il comando per creare quel layer e tutti i comandi successivi.
-Esempio:
+# Appunti Docker
+- Images: template per un container. Contiene codice, librerie, tools, runtimes. Da una singola immagine si possono creare molti container.
+- Container: applicativo in esecuzione. Istanza di un Image.
+- Docker Hub: repository di Images.
+## Dockerfile
+Usato per creare custom image. SI tratta di creare un file chiamato Dockerfile con le istruzioni da eseguire durante una build.
+```
+FROM baseimage #definisce un immagine di partenza
+WORKDIR /app #definisce la directory di lavoro nel container
+COPY local_folder container_folder #definisce quali file copiare sul container e la loro posizione
+#COPY . . aggiunge files della cartella in cui si trova l'immagine alla workdir (root/app) del filesystem del container.
+RUN command #eseguito quando viene fatto build dell'image
+EXPOSE port #notazione per esplicitare porte che si usano
+CMD ["command"] #eseguito quando viene avviato il container
+```
+### Esempio
 ```
 FROM node
 WORKDIR /app
@@ -44,9 +22,8 @@ RUN npm install
 EXPOSE 80
 CMD ["node". " server.js"]
 ```
-
-
-- Guida: `--help:`
+### Note
+- Ogni comando nel Dockerfile crea un layer. Se un layer viene modificato rispetto ad una precedente build, la nuova build esegue il comando per creare quel layer e tutti i comandi successivi.
 
 ## Containers
 ### Attached/Detached
@@ -93,9 +70,12 @@ CMD ["node". " server.js"]
 - Eliminare images non usate: `docker image prune`
   - Flags:
     - `-a' Elimina anche images con tag
+- Condividere image: `docker push image_name`
+- Download image: `docker pull image_name`
 
 ### Note
 - Si possono eliminare solo le images che non sono usate da nessun container. Il container deve essere eliminato, non deve essere nè avviato, nè in stop.
 - Dopo ogni modifica al codice bisogna fare il build image, le images sono read-only, ad ogni build si crea una nuova image.
 - Tag: si usa per specializzare una versione di una image. Usato ad esempio per specificare versione, configurazione.
 - Nei comandi `image_id` può essere sostituito con `name:tag`.
+- Il comando `docker run image_name` cerca l'immagine in locale e se non la trova, la cerca su Docker Hub. Se la versione su Docker Hub viene aggiornata successivamente al comando run, non verrà aggiornata la versione locale. È necessario lanciare `docker pull image_name` per aggiornarla e successivamente fare il run.
