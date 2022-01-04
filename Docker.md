@@ -77,7 +77,7 @@ CMD ["node". " server.js"]
   - Esempio da host a container: `docker cp source/path/file container_name:/dest/path`
   - Esempio da container a host: `docker cp container_name:source/path/file /dest/path`
 
-## Note
+### Note
 - Se il programma in un container finisce, il container va in stop
 - Nei comandi `container_name` può essere sostituito con `container_id`
 - Prima di eliminare un container, questo va fermato
@@ -94,7 +94,7 @@ CMD ["node". " server.js"]
   - Flags:
     - `-a' Elimina anche images con tag
 
-## Note
+### Note
 - Si possono eliminare solo le images che non sono usate da nessun container. Il container deve essere eliminato, non deve essere nè avviato, nè in stop.
 - Dopo ogni modifica al codice bisogna fare il build image, le images sono read-only, ad ogni build si crea una nuova image.
 - Tag: si usa per specializzare una versione di una image. Usato ad esempio per specificare versione, configurazione.
