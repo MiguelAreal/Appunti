@@ -22,7 +22,7 @@ Docker Hub: repository di Images
 
 Creare container da images esistenti:
 Creare container: docker run image_id. Se non trova Image in locale, la cerca su Docker Hub.
-Flag -it: espone shell dal container.
+
 
 Creare custom image:
 Creare file Dockerfile con istruzioni da eseguire durante Build
@@ -55,21 +55,38 @@ Dopo ogni modifica al codice bisogna fare il build image, le images sono read-on
 
 ## Containers
 ### Attached/Detached
-- Attached mode: permette di interagire con il container, vedere la console (default per `docker run`)
+- Attached mode: permette di vedere la console in output del container (default per `docker run`)
 - Detached mode: il container viene eseguito in background (default per `docker start`)
 ### Commands
 - Lista container: `docker ps`
   - Flags:
     - `-a` mostra cronologia
-- Creazione container: `docker run ImageID`
+- Creazione: `docker run ImageID`
   - Flags:
     - `-p local_port:container_port` Binding tra porta host e porta container
     - `-d` Avvio in detached mode
-- Attach ad un container: `docker attach container_name`
-- Visualizzare logs di un container  `docker logs container_name`
+    - `-it` Espone shell del container (interactive mode)
+- Passare in attache mode: `docker attach container_name`
+- Visualizzare logs: `docker logs container_name`
   - Flags:
-    - `-f` Passa ad attached mode per vedere log futuri
+    - `-f` Passa anche ad attached mode per vedere log futuri
 - Avvio container spento: `docker start container_name`
   - Flags:
     - `-a` Avvio in attached mode
+    - `-a -i` Espone shell del container (attached and interactive mode)
 - Stop container: `docker stop container_name`
+- Eliminare container: `docker rm container_name1 container_name2 ...`
+
+## Note
+- Se il programma in un container finisce, il container va in stop
+- Nei comandi `container_name` può essere sostituito con `container_id`
+- Prima di eliminare un container, questo va fermato
+
+## Images
+### Commands
+- Lista images: `docker images`
+- Eliminare image: `docker rmi image_id`
+- Eliminare images non usate: `docker image prune`
+
+## Note
+- Si possono eliminare solo le images che non sono usate da nessun container. Il container deve essere eliminato, non deve essere nè avviato, nè in stop.
