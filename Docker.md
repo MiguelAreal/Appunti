@@ -113,6 +113,7 @@ Nel Dockerfile: `VOLUME ["/path/on/container"] #Anonymous volume`
 Note: 
 - Docker deve avere permessi di lettura e scrittura sulla cartella host che viene condivisa.
 - Se i file nella cartella host sono già presenti nella cartella del contianer, Docker non li sovrascrive ma la cartella host sovrascrive la cartella nel container.
+- Se nel comando run vengono specificati volumi con la stessa radice, la regola che riguarda il path più lungo sovrascrive quella che ha un path più corto.
 
 ### Commands
 Lista volumi: `docker volume ls`
