@@ -40,8 +40,10 @@ CMD ["node". " server.js"]
     - `-it` Espone shell del container (interactive mode)
     - `--rm` Elimina in automatico il container quando va in stop
     - `--name custom_name` Assegna un nome
+    - `-v /path/on/container` Crea anonymous volume
     - `-v volume_name:/path/on/container` Crea named volume
     - `-v /path/on/host:/path/on/container` Crea bind mount
+    - `-e VAR_NAME=value` Imposta valore della variabile VAR_NAME
 - Passare in attache mode: `docker attach container_name`
 - Visualizzare logs: `docker logs container_name`
   - Flags:
@@ -92,15 +94,17 @@ I file permanenti che vengono creati e modificati dall'applicazione sono memoriz
 ### Volumes
 
 - Volumes (gestiti da Docker)
-  - Anonymous: sono eliminati quando un container viene fermato o eliminato. Non accessibili da host. Il volume è strettamente collegato al container.
-  - Named: sono persistenti e non accessibili da host. Ok per file che devono essere persistenti ma che non vanno modificati direttamente da host. Il volume non è associato ad un container.
+  - Anonymous: sono eliminati quando un container viene eliminato. Rimangono disponibili in caso di riavvio. Non sono accessibili da host. Il volume è strettamente collegato al container. Non possono essere condivisi nè tra host e container nè tra container diversi.
+  - Named: sono persistenti e non accessibili da host. Rimangono disponibili anche in caso di eliminazione del container. Sono usati per file che devono essere persistenti ma che non vanno modificati direttamente da host. Il volume non è associato ad un container. È possibile condividere il volume tra più container.
 - Bind Mounts (gestiti da User)
-  - Sono creati a partire da una cartella presente nel file system dell'host che viene montata su un container. Il contenuto della cartella è perennemente sincronizzato tra il container e l'host. Se il container viene fermato o eliminato, i dati nel volume rimangono inalterati. Il container ha diritti di lettura e scrittura sul volume.
+  - Sono creati a partire da una cartella presente nel file system dell'host che viene montata su un container. Il contenuto della cartella è perennemente sincronizzato tra il container e l'host. Se il container viene fermato o eliminato, i dati nel volume rimangono inalterati. Il container ha diritti di lettura e scrittura sul volume. È possibile condividere il volume tra più container.
 
 #### Creation
 **Anonymous volume:**
 
-Nel Dockerfile: `VOLUME ["/path/on/container"] #Anonymous volume`
+Nel Dockerfile: `VOLUME ["/path/on/container"]`
+
+Oppure come comando: `docker run ... -v /path/on/container`
 
 **Named volume:**
 
@@ -108,13 +112,34 @@ Nel Dockerfile: `VOLUME ["/path/on/container"] #Anonymous volume`
 
 **Bind Mount:**
 
-`docker run ... -v volume_name:/path1/on/container -v /path/on/host:/path2/on/container`
+`docker run ... -v /path/on/host:/path2/on/container`
 
 Note: 
 - Docker deve avere permessi di lettura e scrittura sulla cartella host che viene condivisa.
 - Se i file nella cartella host sono già presenti nella cartella del contianer, Docker non li sovrascrive ma la cartella host sovrascrive la cartella nel container.
 - Se nel comando run vengono specificati volumi con la stessa radice, la regola che riguarda il path più lungo sovrascrive quella che ha un path più corto.
-
+- Per rendere un volume readonly basta aggiungere `:ro` alla fine del path relativo al container. Ad esempio: `-v /path/on/host:/path2/on/container:ro`
+- I bind mount non sono gestiti da Docker ma dal filesystem dell'host. Non possono essere eliminati da Docker.
+- È possibile creare un file `.dockerignore` in cui inserire file e cartelle che devono essere ignorati da Docker.
 ### Commands
 Lista volumi: `docker volume ls`
+Dettagli volume: `docker volume inspect volume_name`
+Rimuovere volume: `docker volume rm volume_name`
+Rimuovere tutti volumi inutilizzati: `docker volume prune`
 
+# ARGuments & ENViroment Variables
+
+- Env (run-time): inserire variabili nel Dockerfile e nel codice dell'applicazione in base a `--env` durante il run del container.
+  - Nel codice si inserisce `process.env.VAR_NAME`
+  - Nel Dockerfile imposto la variabile con il comando `ENV VAR_NAME value`
+  - Nel Dockerfile posso utilizzare la variabile richiamandola con `$VAR_NAME`
+  - Se nel comando run non specifico niente, il valore della variabile rimane quello assegnato nel Dockerfile, in alternativa posso sovrascrivere il valore durante il run con: `docker run ... -e VAR_NAME=value`
+  - In alternativa posso creare un file .env in cui settare i valori delle variabili elencando `VAR_NAME=VALUE`. Durante il run specifico di usare il file .env con `docker run ... --env-file /path/to/.env`
+
+- Arg (build-time): inserire variabili nel Dockerfile in base a `--build-arg` durante il buiLd dell'image.
+  - Nel Dockerfile imposto l'arg con il comando `ARG ARG_NAME=value`
+  - Gli args non possono essere usati nel codice dell'app, sono utilizzabili solo nel Dockerfile (escluso command)
+  - Nel Dockerfile posso utilizzare la variabile richiamandola con `$ARG_NAME`
+  - Se nel comando build non specifico niente, il valore dell'arg rimane quello assegnato nel Dockerfile, in alternativa posso sovrascrivere il valore durante il build con: `docker build ... --build-arg ARG_NAME=value`
+
+# Networking
