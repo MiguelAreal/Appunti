@@ -517,10 +517,6 @@ La regola dell’analisi costi benefici (ACB) stabilisce che qualunque misura di
 
 ABC: 
 
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-
 Se il danno ambientale di un progetto è dilatato nel tempo, lo sconto associa ad esso un valore attuale inferiore al suo valore effettivo. Ugualmente se i benefici ambientali si protraggono molto nel tempo, il loro valore attuale può essere troppo sottostimato rispetto al loro valore effettivo. Tanto più alto è il tasso di sconto, tanto maggiore risulta l' incentivo a utilizzare tanto più intensamente le risorse esauribili, lasciando quantità inferiori per le generazioni future.
 
 **Tasso interno di rendimento**
