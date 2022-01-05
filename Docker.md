@@ -41,6 +41,7 @@ CMD ["node". " server.js"]
     - `--rm` Elimina in automatico il container quando va in stop
     - `--name custom_name` Assegna un nome
     - `-v volume_name:/path/on/container` Crea named volume
+    - `-v /path/on/host:/path/on/container` Crea bind mount
 - Passare in attache mode: `docker attach container_name`
 - Visualizzare logs: `docker logs container_name`
   - Flags:
@@ -89,12 +90,12 @@ I file temporanei necessari all'applicazione sono memorizzati separatamente, pos
 I file permanenti che vengono creati e modificati dall'applicazione sono memorizzati nel cotainer e copiati in un volume per resistere al riavvio o all'eliminazione di un container. 
 
 ### Volumes
-Un volume è una cartella presente nel file system dell'host che viene montata su un container. Il contenuto della cartella è perennemente sincronizzato tra il container e l'host. Se il container viene fermato o eliminato, i dati nel volume rimangono inalterati. Il container ha diritti di lettura e scrittura sul volume.
 
 - Volumes (gestiti da Docker)
   - Anonymous: sono eliminati quando un container viene fermato o eliminato. Non accessibili da host. Il volume è strettamente collegato al container.
   - Named: sono persistenti e non accessibili da host. Ok per file che devono essere persisteni ma che non vanno modificati direttamente da host. Il volume non è associato ad un container.
 - Bind Mounts (gestiti da User)
+  - Sono creati a partire da una cartella presente nel file system dell'host che viene montata su un container. Il contenuto della cartella è perennemente sincronizzato tra il container e l'host. Se il container viene fermato o eliminato, i dati nel volume rimangono inalterati. Il container ha diritti di lettura e scrittura sul volume.
 
 #### Creation
 **Anonymous volume:**
@@ -104,6 +105,12 @@ Nel Dockerfile: `VOLUME ["/path/on/container"] #Anonymous volume`
 **Named volume:**
 
 `docker run ... -v volume_name:/path/on/container`
+
+**Bind Mount:**
+
+`docker run ... -v volume_name:/path1/on/container -v /path/on/host:/path2/on/container`
+
+Note: Docker deve avere permessi di lettura e scrittura sulla cartella host che viene condivisa.
 
 ### Commands
 Lista volumi: `docker volume ls`
