@@ -93,7 +93,7 @@ I file permanenti che vengono creati e modificati dall'applicazione sono memoriz
 
 - Volumes (gestiti da Docker)
   - Anonymous: sono eliminati quando un container viene fermato o eliminato. Non accessibili da host. Il volume è strettamente collegato al container.
-  - Named: sono persistenti e non accessibili da host. Ok per file che devono essere persisteni ma che non vanno modificati direttamente da host. Il volume non è associato ad un container.
+  - Named: sono persistenti e non accessibili da host. Ok per file che devono essere persistenti ma che non vanno modificati direttamente da host. Il volume non è associato ad un container.
 - Bind Mounts (gestiti da User)
   - Sono creati a partire da una cartella presente nel file system dell'host che viene montata su un container. Il contenuto della cartella è perennemente sincronizzato tra il container e l'host. Se il container viene fermato o eliminato, i dati nel volume rimangono inalterati. Il container ha diritti di lettura e scrittura sul volume.
 
@@ -110,7 +110,9 @@ Nel Dockerfile: `VOLUME ["/path/on/container"] #Anonymous volume`
 
 `docker run ... -v volume_name:/path1/on/container -v /path/on/host:/path2/on/container`
 
-Note: Docker deve avere permessi di lettura e scrittura sulla cartella host che viene condivisa.
+Note: 
+- Docker deve avere permessi di lettura e scrittura sulla cartella host che viene condivisa.
+- Se i file nella cartella host sono già presenti nella cartella del contianer, Docker non li sovrascrive ma la cartella host sovrascrive la cartella nel container.
 
 ### Commands
 Lista volumi: `docker volume ls`
