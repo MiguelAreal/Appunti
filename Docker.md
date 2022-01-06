@@ -177,3 +177,23 @@ Note:
 
 Lista Docker Newtorks: `docker network ls`
 
+# Docker Compose
+Usato per raggruppare diversi comandi di Docker (run e build) in un unico file di configurazione. Utile per automatizzare il setup di app multi-container.
+Non rimpiazza i Dockerfile e non si può usare per gestire più containers installati su host diversi.
+
+Creazione file `docker-compose.yaml`
+
+`version`: Versione Docker Compose
+`services: Lista di container
+
+Esempio:
+```yaml
+version: "3.8"
+services:
+  container1_name:
+     
+  container2_name:
+  container3_name:
+```
+Note: nei file yaml viene considerata l'indentazione.
+
