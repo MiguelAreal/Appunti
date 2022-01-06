@@ -44,6 +44,7 @@ CMD ["node". " server.js"]
     - `-v volume_name:/path/on/container` Crea named volume
     - `-v /path/on/host:/path/on/container` Crea bind mount
     - `-e VAR_NAME=value` Imposta valore della variabile VAR_NAME
+    - `--nework network_name` Aggiunge container ad una rete
 - Passare in attache mode: `docker attach container_name`
 - Visualizzare logs: `docker logs container_name`
   - Flags:
@@ -143,3 +144,36 @@ Rimuovere tutti volumi inutilizzati: `docker volume prune`
   - Se nel comando build non specifico niente, il valore dell'arg rimane quello assegnato nel Dockerfile, in alternativa posso sovrascrivere il valore durante il build con: `docker build ... --build-arg ARG_NAME=value`
 
 # Networking
+
+### Connessione da container a www
+Es: App nel container chiama API sul web.
+
+La funzione è supportata di default.
+### Connessione da container a servizio su host
+Es: App nel container si connette al DB che risiede su host.
+
+Non servono comandi particolari o direttive nel Dockerfile. Nel codice dell'applicazione del container ci si connette all'host inserendo come indirizzo base `host.docker.internal`. Il codice host.docker.internal viene tradotto da Docker nell'indirizzo di rete dell'host.
+
+Es:`http://host.docker.internal:21017/link`. 
+### Connessione da container a servizio su altro container
+Es: App nel container si connette al DB che risiede in un altro container.
+
+Soluzione 1:
+1. Ottengo IP del container a cui connettersi analizzando `docker container inspect container_name`
+2. Inserisco IP ottenuto nel codice dell'app in altro container.
+
+Soluzione 2 (best): usare Container Networks
+
+## Container Networks
+È possibile inserire uno o più container in una rete docker con `docker run ... --nework network_name`. Il network non viene creato automaticamente, va creato a priori.
+
+1. Creazione network: `docker network create network_name`
+2. Nel codice dell'applicazione, ci si connette ad un container inserendo come indirizzo base `container_name`. Esempio:`http://container_name:21017/link`. Funziona solo se i due container sono nello stesso network. 
+3. Avvio container: `docker run ... --nework network_name`
+
+Note: 
+- Quando si avviano container che devono comunicare nello stesso network, non serve il flag `-p port:port`, il flag serve solo quando il container deve fornire servizi verso l'host.
+- Docker non sostituisce gli indirizzi ip direttamente nel codice. Docker individua le richieste che entrano ed escono dal container e fa la rsoluzione dell'indirizzo ip corretto a cui inoltrare la richiesta. Se la richiesta non deve uscire dal container o se la richiesta arriva da javascript, docker non effettua la risoluzione dell'ip corretto.
+
+Lista Docker Newtorks: `docker network ls`
+
