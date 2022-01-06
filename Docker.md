@@ -194,12 +194,15 @@ Creazione file `docker-compose.yaml`
 
 ### Avvio:
 Ci si posiziona nella cartella contenente il file .yaml.
+
 `docker-compose up`: fa pull, build e run di images e containers specificati nel file.
+
 Flags:
 - `-d`: Avvio in detach mode.
 
 ### Stop:
 `docker-compose down`: ferma ed elimina tutti i container. Non elimina i volumi.
+
 Flags:
 - `-v`: Elimina anche i volumi.
 
