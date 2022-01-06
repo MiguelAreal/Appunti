@@ -181,19 +181,72 @@ Lista Docker Newtorks: `docker network ls`
 Usato per raggruppare diversi comandi di Docker (run e build) in un unico file di configurazione. Utile per automatizzare il setup di app multi-container.
 Non rimpiazza i Dockerfile e non si può usare per gestire più containers installati su host diversi.
 
+### Creazione
 Creazione file `docker-compose.yaml`
 
 `version`: Versione Docker Compose
-`services: Lista di container
+`services: Lista di containe
+`image`: Image di base (es: Alpine, Python, ...)
+`volumes:` Lista di volumi. Per ogni volume si aggiunge un `-` e si definisce la notazione standard.
+`enviroment:` Lista di variabili env con notazione `- NOME_ENV=value`.
+`env_file:` Lista di file che contengono variabili env. 
+`networks:` Lista di network a cui collegare il container. Opzionale, vedi note.
 
-Esempio:
+### Avvio:
+Ci si posiziona nella cartella contenente il file .yaml.
+`docker-compose up`: fa pull, build e run di images e containers specificati nel file.
+Flags:
+- `-d`: Avvio in detach mode.
+
+### Stop:
+`docker-compose down`: ferma ed elimina tutti i container. Non elimina i volumi.
+Flags:
+- `-v`: Elimina anche i volumi.
+
+### Esempi:
+Esempio 1:
 ```yaml
 version: "3.8"
 services:
   container1_name:
-     
+    image: 'base_image'
+    volumes:
+      - volume_name:/path/inside/container
+      - volume_name2:/path2/inside/container:ro
+    enviroment:
+      - NOME_ENV=value
+    env_file:
+      - ./relative/path/to/env/file.env
+    networks:
+      - net-name
   container2_name:
   container3_name:
-```
-Note: nei file yaml viene considerata l'indentazione.
 
+#solo per named volumes, vedi note
+volumes:
+  volume_name:
+```
+
+Esempio 2:
+```yaml
+version: "3.8"
+services:
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - data:/data/db
+    enviroment:
+      MONGO_INITDB_ROOT_USERNAME: max
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      #- MONGO_INITDB_ROOT_USERNAME=max
+      #- MONGO_INITDB_ROOT_PASSWORD=secret
+    env_file:
+      -./env/mongo.env
+  backend:
+  frontend:
+```
+Note: 
+- Nei file yaml viene considerata l'indentazione.
+- Di default i container sono avviati in detach mode e con flag rm (eliminati quando si fermano).
+- Tutti i container creati da compose sono inseriti in un solo network creato automaticamente.
+- Per i named volumes, dopo averli dichiarati dentro al giusto service, vanno anche dichiarati separatamente senza identazione alla fine del file yaml. Questa cosa non vale per gli anonymous volumes e per i bind mounts.
