@@ -187,18 +187,23 @@ Creazione file `docker-compose.yaml`
 `version`: Versione Docker Compose
 `services: Lista di containe
 `image`: Image di base (es: Alpine, Python, ...)
-`volumes:` Lista di volumi. Per ogni volume si aggiunge un `-` e si definisce la notazione standard.
-`enviroment:` Lista di variabili env con notazione `- NOME_ENV=value`.
-`env_file:` Lista di file che contengono variabili env. 
-`networks:` Lista di network a cui collegare il container. Opzionale, vedi note.
-
+`volumes`: Lista di volumi. Per ogni volume si aggiunge un `-` e si definisce la notazione standard.
+`enviroment`: Lista di variabili env con notazione `- NOME_ENV=value`.
+`env_file`: Lista di file che contengono variabili env. 
+`networks`: Lista di network a cui collegare il container. Opzionale, vedi note.
+`build`: Utile per specificare una image di cui fare il build. Accetta il percorso relativo che punta alla cartella contenente il Dockerfile. Accetta anche altre specifiche come il context, il nome del dockerfile, gli args per fare build.
+`port`: lista di porte `-'host_port:container_port'`.
+`depends_on`: Specifica che il container può essere creato solo se prima ne è creato un altro.
+`stdin_open` e `tty`: Se impostati a true avviano il container in interactive mode.
+`container_name`: Sovrascrive il nome assegnato automaticamente da compose con uno custom.
 ### Avvio:
 Ci si posiziona nella cartella contenente il file .yaml.
 
-`docker-compose up`: fa pull, build e run di images e containers specificati nel file.
+`docker-compose up`:  run di containers specificati nel file.
 
 Flags:
 - `-d`: Avvio in detach mode.
+- `--build`: Forza il build delle images anche se è già stato fatto in passato.
 
 ### Stop:
 `docker-compose down`: ferma ed elimina tutti i container. Non elimina i volumi.
@@ -223,8 +228,13 @@ services:
     networks:
       - net-name
   container2_name:
-  container3_name:
-
+    build:./relative/path/to/DockerfileFolder
+    ports:
+      -'host_port:container_port'
+    depends_on:
+      - container1_name
+    stdin_open: true
+    tty: true
 #solo per named volumes, vedi note
 volumes:
   volume_name:
@@ -244,12 +254,35 @@ services:
       #- MONGO_INITDB_ROOT_USERNAME=max
       #- MONGO_INITDB_ROOT_PASSWORD=secret
     env_file:
-      -./env/mongo.env
+      - ./env/mongo.env
   backend:
+    build: ./backend
+    ports:
+      -'80:80'
+    volumes:
+      - logs:app/logs
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
   frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/scr:app/src
+    stdin_open: true
+    tty: true
+  
+volumes:
+  data
+  logs
+
 ```
 Note: 
 - Nei file yaml viene considerata l'indentazione.
-- Di default i container sono avviati in detach mode e con flag rm (eliminati quando si fermano).
+- Di default i container sono avviati con flag rm (eliminati quando si fermano).
 - Tutti i container creati da compose sono inseriti in un solo network creato automaticamente.
 - Per i named volumes, dopo averli dichiarati dentro al giusto service, vanno anche dichiarati separatamente senza identazione alla fine del file yaml. Questa cosa non vale per gli anonymous volumes e per i bind mounts.
