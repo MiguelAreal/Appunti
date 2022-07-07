@@ -55,6 +55,7 @@ function MyComponent() {
 
 Since useEffect is run after the DOM Rendering, it can be used to listen to events such as a window resize. If we register an event listener inside the useEffect function, it will register a new event listener everytime the component is loaded. Even if the component is unmounted, the event listener will be on the DOM. This will eventually end up in a memory leak. A good practice is to clean up the useEffect function. 
 
+Example:
 ``` JSX
 import React from "react"
 
@@ -71,6 +72,7 @@ export default function WindowTracker() {
         //On windows resize it will call watchWidth()
         window.addEventListener("resize", watchWidth)
         
+        //The return is called only when the component is removed (end of lifecycle)
         return function() {
             console.log("Cleaning up...")
             window.removeEventListener("resize", watchWidth)
