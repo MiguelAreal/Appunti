@@ -55,7 +55,7 @@ function MyComponent() {
 
 Since useEffect is run after the DOM Rendering, it can be used to listen to events such as a window resize. If we register an event listener inside the useEffect function, it will register a new event listener everytime the component is loaded. Even if the component is unmounted, the event listener will be on the DOM. This will eventually end up in a memory leak. A good practice is to clean up the useEffect function. 
 
-Example:
+Example 3:
 ``` JSX
 import React from "react"
 
@@ -86,10 +86,12 @@ export default function WindowTracker() {
 ```
 
 #### useRef
-useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component. useRef can be used to keep a value stored no matter how may times the component is rendered. When the value of the ref object changes, the component won't re-render. 
+useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component. useRef can be used to keep a value stored no matter how may times the component is rendered. When the value of the ref object changes, the component won't re-render.
 
-Example:
+Example 1:
 ``` JSX
+//Example code that keeps track of the number of times the component is render using useRef hook.
+
 import React, {useState, useEffect, useRef} from "react"
 
 export default function App(){
@@ -97,6 +99,7 @@ const [name, setName] = useState('')
 const renderCount = useRef(1)
 
 useEffect(() => {
+   // Updating the useRef object current value
    renderCount.current = renderCount.current + 1;
    })
 return(
@@ -106,5 +109,31 @@ return(
    <div> I rendered {renderCount.current} times </div>
 <>
 )}
+
+```
+
+useRef hook is also used as a better way to access the DOM. If you pass a ref object to React with `<div ref={myRef} />`, React will set its .current property to the corresponding DOM node whenever that node changes.
+
+
+Example 2:
+``` JSX
+//Example code that focus an input element whenever a button was clicked.
+
+import React, {useState, useEffect, useRef} from "react"
+
+export default function App(){
+  const inputRef = useRef(null)
+  
+  const focusInput = () => {
+    inputRef.current.focus()
+  }
+  
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={focusInput}>Focus Input</button>
+    </>
+  )
+}
 
 ```
