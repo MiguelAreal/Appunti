@@ -148,29 +148,7 @@ Memoization is essentially just caching. Imagine a complex function that is slow
 3. The child component calls the parent callback function using props.
 
 ``` JSX
-// CHILD
-import React from "react"
-
-export default function Child(){
- 
-     onTrigger = (event) => {
-        this.props.parentCallback("Data from child");
-        event.preventDefault();
-    }
-    
-        return(
-        <div>
-            <form onSubmit = {this.onTrigger}>
-                <input type = "submit" value = "Submit"/>
-            </form>
-        </div>
-        )
-}
-
-```
-
-``` JSX
-// Parent
+// PARENT
 import React from "react"
 
 export default function Parent(){
@@ -179,7 +157,6 @@ export default function Parent(){
   handleCallback = (childData) =>{
         this.setState({data: childData})
   }
-    
     
   return (
     <div>
@@ -190,3 +167,25 @@ export default function Parent(){
 }
 
 ```
+``` JSX
+// CHILD
+import React from "react"
+
+export default function Child(){
+     onTrigger = (event) => {
+        this.props.parentCallback("Data from child");
+        event.preventDefault();
+    }
+    
+    return(
+        <div>
+            <form onSubmit = {this.onTrigger}>
+                <input type = "submit" value = "Submit"/>
+            </form>
+        </div>
+    )
+}
+
+```
+
+
