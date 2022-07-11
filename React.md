@@ -153,12 +153,18 @@ import React from "react"
 
 export default function Child(){
  
-  return (
-    <>
-      <input ref={inputRef} />
-      <button onClick={focusInput}>Focus Input</button>
-    </>
-  )
+     onTrigger = (event) => {
+        this.props.parentCallback("Data from child");
+        event.preventDefault();
+    }
+    
+        return(
+        <div>
+            <form onSubmit = {this.onTrigger}>
+                <input type = "submit" value = "Submit"/>
+            </form>
+        </div>
+        )
 }
 
 ```
@@ -177,7 +183,7 @@ export default function Parent(){
     
   return (
     <div>
-        <Child parentCallback = {this.handleCallback}/>
+        <Child parentCallback = {handleCallback}/>
         {data}
     </div>
   )
