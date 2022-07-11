@@ -137,3 +137,9 @@ export default function App(){
 }
 
 ```
+#### useMemo 
+Memoization is essentially just caching. Imagine a complex function that is slow to run which takes a as an argument. In order to speed up this function, you can cache the results of running the function so that when the function is run with the same inputs you can use the cached value instead of recomputing the value. This is a very common problem in React since all the component logic is re-computed every time the component renders and could cause drastic slowdowns if the component logic is slow to compute. Because of this, many React applications use memoization libraries or custom code to make memoization possible, but with the introduction of hooks, React has built in its own memoization system which is incredibly easy to use.
+
+...
+
+
