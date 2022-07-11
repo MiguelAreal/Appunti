@@ -85,3 +85,26 @@ export default function WindowTracker() {
 }
 ```
 
+#### useRef
+useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component. useRef can be used to keep a value stored no matter how may times the component is rendered. When the value of the ref object changes, the component won't re-render. 
+
+Example:
+``` JSX
+import React, {useState, useEffect, useRef} from "react"
+
+export default function App(){
+const [name, setName] = useState('')
+const renderCount = useRef(1)
+
+useEffect(() => {
+   renderCount.current = renderCount.current + 1;
+   })
+return(
+<>
+   <input value={name} on Change={e => setName(e.targetvalue)} /}
+   <div> My name is {name} </div>
+   <div> I rendered {renderCount.current} times </div>
+<>
+)}
+
+```
