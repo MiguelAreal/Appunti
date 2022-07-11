@@ -142,4 +142,45 @@ Memoization is essentially just caching. Imagine a complex function that is slow
 
 ...
 
+#### Sending data from child to parent components
+1. Create a callback function in the parent component. This callback function will get the data from the child component.
+2. Pass the callback function in the parent as a prop to the child component.
+3. The child component calls the parent callback function using props.
 
+``` JSX
+// CHILD
+import React from "react"
+
+export default function Child(){
+ 
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={focusInput}>Focus Input</button>
+    </>
+  )
+}
+
+```
+
+``` JSX
+// Parent
+import React from "react"
+
+export default function Parent(){
+  const [state, setState] = React.useState(0);
+  
+  handleCallback = (childData) =>{
+        this.setState({data: childData})
+  }
+    
+    
+  return (
+    <div>
+        <Child parentCallback = {this.handleCallback}/>
+        {data}
+    </div>
+  )
+}
+
+```
