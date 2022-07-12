@@ -147,6 +147,8 @@ Memoization is essentially just caching. Imagine a complex function that is slow
 2. Pass the callback function in the parent as a prop to the child component.
 3. The child component calls the parent callback function using props.
 
+Example: 
+
 ``` JSX
 // PARENT
 import React from "react"
@@ -188,4 +190,79 @@ export default function Child(){
 
 ```
 
+#### Forms 
 
+In most cases, it’s convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form. The standard way to achieve this is with a technique called “controlled components”. An input form element whose value is controlled by React is called a “controlled component”.
+
+Example 1 (Simple change handler):
+``` JSX
+import React from "react"
+
+export default function Form() {
+    const [firstName, setFirstName] = React.useState("")
+    
+    console.log(firstName)
+    
+    function handleChange(event) {
+        // event.target return the DOM Obj that called the function.
+        setFirstName(event.target.value)
+    }
+    
+    return (
+        <form>
+            <input
+                type="text"
+                placeholder="First Name"
+                onChange={handleChange}
+            />
+        </form>
+    )
+}
+
+```
+
+
+Example 2 (Handle changes on many inputs):
+``` JSX
+// Instead of creating an handler for every input field, we use a unique handler that uses the name of the input field to update the right propriety inside an unique object placed in "formData" state.
+
+import React from "react"
+
+export default function Form() {
+    const [formData, setFormData] = React.useState(
+        {firstName: "", lastName: ""}
+    )
+    
+    console.log(formData)
+    
+    function handleChange(event) {
+        setFormData(prevFormData => {
+            return {
+                  // The prevFormData is used to keep older values iside the object with this obj update
+                ...prevFormData,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
+    
+    return (
+        <form>
+            <input
+                type="text"
+                placeholder="First Name"
+                onChange={handleChange}
+                name="firstName"
+            />
+            <input
+                type="text"
+                placeholder="Last Name"
+                onChange={handleChange}
+                name="lastName"
+            />
+        </form>
+    )
+}
+
+
+
+```
