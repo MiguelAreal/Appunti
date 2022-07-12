@@ -1,7 +1,7 @@
 # React
 
 #### Basic Elements
-asdasd
+
 Html class
 ``` JSX
 <div className="container"></div>
