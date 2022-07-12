@@ -192,10 +192,11 @@ export default function Child(){
 
 #### Forms 
 
-In most cases, it’s convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form. The standard way to achieve this is with a technique called “controlled components”. An input form element whose value is controlled by React is called a “controlled component”.
+In most cases, it’s convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form.
 
 Example 1 (Simple change handler):
 ``` JSX
+// Note: not using Controlled COmponent. See next examples to get the right implementation
 import React from "react"
 
 export default function Form() {
@@ -225,7 +226,7 @@ export default function Form() {
 Example 2 (Handle changes on many inputs):
 ``` JSX
 // Instead of creating an handler for every input field, we use a unique handler that uses the name of the input field to update the right propriety inside an unique object placed in "formData" state.
-
+// Note: not using Controlled COmponent. See next examples to get the right implementation
 import React from "react"
 
 export default function Form() {
@@ -263,6 +264,59 @@ export default function Form() {
     )
 }
 
+```
+###### Controller Component
+Controller component: an input form element whose value is controlled by React. Controlled component shoud be used to make sure that the internal state of the input component has the same value of the webpage state. In simple words: the value prop of the input component should be set to match the page state.
+
+Example 3 (Controller component):
+
+``` JSX
+import React from "react"
+
+export default function Form() {
+    const [formData, setFormData] = React.useState(
+        {firstName: "", lastName: "", email: ""}
+    )
+    
+    function handleChange(event) {
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
+    
+    return (
+        <form>
+            <input
+                type="text"
+                placeholder="First Name"
+                onChange={handleChange}
+                name="firstName"
+                value={formData.firstName}
+            />
+            <input
+                type="text"
+                placeholder="Last Name"
+                onChange={handleChange}
+                name="lastName"
+                value={formData.lastName}
+            />
+            <input
+                type="email"
+                placeholder="Email"
+                onChange={handleChange}
+                name="email"
+                value={formData.email}
+            />
+        </form>
+    )
+}
 
 
+```
+###### Input, textarea, checkbox, ....
+Example 4:
+``` JSX
 ```
